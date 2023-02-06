@@ -1,0 +1,46 @@
+{% extends 'navbar.html' %}
+{% block content %}
+    <h2 align="center"> updateExpense</h2>
+<form action="updateExpenses" method="post">
+    {% csrf_token %}
+    <table align="center">
+        <tr>
+            <td>
+                <select name="ddlnames">
+                    <option selected>{{ i.firstname }}</option>
+                    {% for i in data %}
+                      <option>{{ i.firstname }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="searchtxt" placeholder="purpose">
+            </td>
+        </tr>
+        <tr>
+            <td><input type="number" name="txtIncome" placeholder="expense"></td>
+        </tr>
+         <tr>
+            <td><input type="date" name="txtdate"></td>
+        </tr>
+           </tr>
+   {% for i in data %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.name }}</td>
+        <td>{{i.purpose }}</td>
+        <td>{{ i.expense }}</td>
+        <td>{{ i.date }}</td>
+        <td><a href="{% url 'updateexpense' i.id %}">Updateexp</a></td>
+        <td><a href="{% url 'delete' i.id %}">Delete</a></td>
+    {% endfor %}
+    </tr>
+
+    </table>
+</form>
+
+
+
+{% endblock %}

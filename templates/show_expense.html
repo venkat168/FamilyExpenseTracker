@@ -1,0 +1,32 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h2 align="center"> view Expense</h2>
+<from action="viewexpense" method="post">
+    <table align="center" border="2" class="table">
+    <tr>
+        <th>Id</th>
+        <th>name</th>
+         <th>purpose</th>
+         <th>amount</th>
+         <th>date</th>
+         <th>edit</th>
+         <th>remove</th>
+
+
+    </tr>
+   {% for i in data %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.name }}</td>
+        <td>{{i.purpose }}</td>
+        <td>{{ i.expense }}</td>
+        <td>{{ i.date }}</td>
+        <td><a href="{% url 'edit' i.id %}">Update</a></td>
+        <td><a href="{% url 'remove' i.id %}">Delete</a></td>
+    {% endfor %}
+    </tr>
+</table>
+</from>
+
+
+{% endblock %}
